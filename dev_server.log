@@ -1,0 +1,26 @@
+nohup: ignoring input
+
+> bandung-talentsource-redesign@0.0.0 dev
+> vite --host
+
+
+  VITE v6.3.5  ready in 427 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: http://169.254.0.21:5173/
+9:02:24 AM [vite] (client) hmr update /src/App.css
+9:02:25 AM [vite] (client) hmr update /src/index.css
+9:02:32 AM [vite] (client) page reload src/main.jsx
+9:02:33 AM [vite] (client) Pre-transform error: Failed to load url /src/App.css (resolved id: /home/ubuntu/bandung-talentsource-redesign/src/App.css) in /home/ubuntu/bandung-talentsource-redesign/src/App.jsx. Does the file exist?
+9:02:36 AM [vite] (client) hmr update /src/App.jsx
+9:02:47 AM [vite] (client) hmr update /src/App.jsx
+9:02:53 AM [vite] (client) hmr update /src/App.jsx
+9:02:58 AM [vite] (client) hmr update /src/App.jsx
+9:03:10 AM [vite] (client) hmr update /src/App.jsx
+9:03:14 AM [vite] (client) hmr update /src/App.jsx
+9:03:28 AM [vite] (client) hmr update /src/App.jsx
+9:03:32 AM [vite] (client) hmr update /src/App.jsx
+9:03:42 AM [vite] (client) hmr update /src/App.jsx
+9:03:47 AM [vite] (client) hmr update /src/App.jsx
+9:03:57 AM [vite] (client) hmr update /src/App.jsx
+9:04:01 AM [vite] (client) hmr update /src/App.jsx
