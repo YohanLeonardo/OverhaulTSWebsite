@@ -29,10 +29,10 @@ const WhatsAppPopup = () => {
     <div className="fixed bottom-6 right-6 z-50">
       {!isOpen && (
         <button
-          className="bg-green-500 text-white rounded-full px-6 py-3 shadow-lg hover:bg-green-600 transition-colors flex items-center justify-center space-x-2"
+          className="bg-green-500 text-white text-xl rounded-full px-8 py-4 shadow-lg hover:bg-green-600 transition-colors flex items-center justify-center space-x-3"
           onClick={() => setIsOpen(true)}
         >
-          <img src={whatsappIcon} alt="WhatsApp Icon" className="h-6 w-6" />
+          <img src={whatsappIcon} alt="WhatsApp Icon" className="h-8 w-8" />
           <span>Contact us!</span>
         </button>
       )}
