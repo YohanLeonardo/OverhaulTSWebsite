@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
@@ -16,6 +17,7 @@ import {
   Target,
   Award,
   Globe,
+  ChevronRight,
 } from 'lucide-react'
 import bannerImage from '../../../assets/banner-bts-03-opt.jpg'
 
@@ -44,6 +46,21 @@ const CompanyProfile = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Breadcrumb */}
+      <div className="bg-gray-100 py-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center space-x-2 text-sm text-gray-500">
+          <Link to="/" className="hover:text-teal-600">
+            Home
+          </Link>
+          <ChevronRight className="h-4 w-4" />
+          <Link to="/company-profile" className="hover:text-teal-600">
+            About Us
+          </Link>
+          <ChevronRight className="h-4 w-4" />
+          <span>Company Profile</span>
+        </div>
+      </div>
+
       {/* Header Section */}
       <section className="bg-gradient-to-r from-teal-600 to-blue-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
