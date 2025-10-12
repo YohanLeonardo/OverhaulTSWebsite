@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Card, CardContent } from '../../../components/ui/card'
-import { CheckCircle } from 'lucide-react'
+import { CheckCircle, ChevronRight } from 'lucide-react'
 import tujuhSembilanLogo from '../../../assets/tujuh-sembilan-logo.png'
 
 const CorporatePartners = () => {
@@ -36,6 +37,21 @@ const CorporatePartners = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Breadcrumb */}
+      <div className="bg-gray-100 py-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center space-x-2 text-sm text-gray-500">
+          <Link to="/" className="hover:text-teal-600">
+            Home
+          </Link>
+          <ChevronRight className="h-4 w-4" />
+          <Link to="/corporate-partners" className="hover:text-teal-600">
+            About Us
+          </Link>
+          <ChevronRight className="h-4 w-4" />
+          <span>Corporate Partners</span>
+        </div>
+      </div>
+
       {/* Header Section */}
       <div className="bg-gradient-to-r from-teal-600 to-blue-700 text-white py-16">
         <div className="container mx-auto px-6">

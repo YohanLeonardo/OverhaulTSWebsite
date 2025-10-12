@@ -34,6 +34,8 @@ import CompanyProfile from './about_files/pages/about/CompanyProfile'
 import StandingPartners from './about_files/pages/about/StandingPartners'
 import CorporatePartners from './about_files/pages/about/CorporatePartners'
 import Service from './Services'
+import FreeInternship from './FreeInternship'
+import WhatsAppPopup from './WhatsAppPopup'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -119,12 +121,12 @@ function App() {
                 >
                   Free Webinar & Live Consultation
                 </a>
-                <a
-                  href="#internship"
+                <Link
+                  to="/free-internship"
                   className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap"
                 >
                   Free Internship
-                </a>
+                </Link>
                 <a
                   href="#education"
                   className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap"
@@ -200,12 +202,13 @@ function App() {
               >
                 Free Webinar & Live Consultation
               </a>
-              <a
-                href="#internship"
+              <Link
+                to="/free-internship"
                 className="text-gray-600 hover:text-teal-600 block px-3 py-2 text-base font-medium"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Free Internship
-              </a>
+              </Link>
               <a
                 href="#education"
                 className="text-gray-600 hover:text-teal-600 block px-3 py-2 text-base font-medium"
@@ -224,6 +227,7 @@ function App() {
         <Route path="/standing-partners" element={<StandingPartners />} />
         <Route path="/corporate-partners" element={<CorporatePartners />} />
         <Route path="/services" element={<Service />} />
+        <Route path="/free-internship" element={<FreeInternship />} />
       </Routes>
 
       {/* CTA Section - Only show on homepage */}
@@ -336,6 +340,7 @@ function App() {
           </div>
         </div>
       </footer>
+      <WhatsAppPopup />
     </div>
   )
 }
