@@ -35,7 +35,8 @@ import StandingPartners from './about_files/pages/about/StandingPartners'
 import CorporatePartners from './about_files/pages/about/CorporatePartners'
 import Service from './Services'
 import FreeInternship from './FreeInternship'
-import WhatsAppPopup from './WhatsAppPopup'
+import WhatsAppPopup from './WhatsappPopup'
+import EducationSupport from './EducationSupport'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -127,12 +128,12 @@ function App() {
                 >
                   Free Internship
                 </Link>
-                <a
-                  href="#education"
+                <Link
+                  to="/education-support"
                   className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap"
                 >
                   Education Support
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -209,12 +210,13 @@ function App() {
               >
                 Free Internship
               </Link>
-              <a
-                href="#education"
+              <Link
+                to="/education-support"
                 className="text-gray-600 hover:text-teal-600 block px-3 py-2 text-base font-medium"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Education Support
-              </a>
+              </Link>
             </div>
           </div>
         )}
@@ -228,6 +230,7 @@ function App() {
         <Route path="/corporate-partners" element={<CorporatePartners />} />
         <Route path="/services" element={<Service />} />
         <Route path="/free-internship" element={<FreeInternship />} />
+        <Route path="/education-support" element={<EducationSupport />} />
       </Routes>
 
       {/* CTA Section - Only show on homepage */}
