@@ -6,22 +6,20 @@ import frigardIcon from './assets/firgard-Small.png'
 const WhatsAppPopup = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isChatOpen, setIsChatOpen] = useState(false)
-  const [phoneNumber, setPhoneNumber] = useState('')
+  const fixedPhoneNumber = '6289655059990' // ganti dengan nomor kontak Customer Service
   const [message, setMessage] = useState('')
 
   const handleSendMessage = () => {
-    if (phoneNumber && message) {
-      const whatsappUrl = `https://wa.me/${phoneNumber.replace(
-        /[^0-9]/g,
-        ''
-      )}?text=${encodeURIComponent(message)}`
+    if (message) {
+      const whatsappUrl = `https://wa.me/${fixedPhoneNumber}?text=${encodeURIComponent(
+        message
+      )}`
       window.open(whatsappUrl, '_blank')
-      setPhoneNumber('')
       setMessage('')
       setIsChatOpen(false)
       setIsOpen(false)
     } else {
-      alert('Please enter your WhatsApp number and message.')
+      alert('Please enter your message.')
     }
   }
 
@@ -29,10 +27,10 @@ const WhatsAppPopup = () => {
     <div className="fixed bottom-6 right-6 z-50">
       {!isOpen && (
         <button
-          className="bg-green-500 text-white rounded-full px-6 py-3 shadow-lg hover:bg-green-600 transition-colors flex items-center justify-center space-x-2"
+          className="bg-green-500 text-white rounded-full px-8 py-4 shadow-lg hover:bg-green-600 transition-colors flex items-center justify-center space-x-3"
           onClick={() => setIsOpen(true)}
         >
-          <img src={whatsappIcon} alt="WhatsApp Icon" className="h-6 w-6" />
+          <img src={whatsappIcon} alt="WhatsApp Icon" className="h-8 w-8" />
           <span>Contact us!</span>
         </button>
       )}
@@ -99,13 +97,7 @@ const WhatsAppPopup = () => {
                   Our customer support team is here to answer your questions.
                   Ask us anything!
                 </p>
-                <input
-                  type="text"
-                  placeholder="Masukan nomor Whatsapp anda.."
-                  className="w-full p-2 border border-gray-300 rounded-md mb-3 focus:outline-none focus:ring-2 focus:ring-green-500"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                />
+
                 <textarea
                   placeholder="Ketik pesan anda disini..."
                   rows="4"
