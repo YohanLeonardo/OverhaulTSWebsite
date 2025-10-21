@@ -37,6 +37,7 @@ import Service from './Services'
 import FreeInternship from './FreeInternship'
 import WhatsAppPopup from './WhatsappPopup'
 import EducationSupport from './EducationSupport'
+import CaseStudies from './sections/CaseStudies'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -110,12 +111,18 @@ function App() {
                   Services
                 </Link>
 
-                <a
+                <Link
+                  to="/case-studies"
+                  className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap"
+                >
+                  Case Studies & Op-Ed
+                </Link>
+                {/* <a
                   href="#track-record"
                   className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap"
                 >
                   Case Studies & Op-Ed
-                </a>
+                </a> */}
                 <a
                   href="#webinar"
                   className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap"
@@ -191,12 +198,12 @@ function App() {
               >
                 Services
               </a>
-              <a
-                href="#track-record"
-                className="text-gray-600 hover:text-teal-600 block px-3 py-2 text-base font-medium"
-              >
-                Case Studies & Op-Ed
-              </a>
+              <Link
+                  to="/case-studies"
+                  className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap"
+                >
+                  Case Studies & Op-Ed
+              </Link>
               <a
                 href="#webinar"
                 className="text-gray-600 hover:text-teal-600 block px-3 py-2 text-base font-medium"
@@ -231,6 +238,7 @@ function App() {
         <Route path="/services" element={<Service />} />
         <Route path="/free-internship" element={<FreeInternship />} />
         <Route path="/education-support" element={<EducationSupport />} />
+        <Route path="/case-studies" element={<CaseStudies />} />
       </Routes>
 
       {/* CTA Section - Only show on homepage */}
