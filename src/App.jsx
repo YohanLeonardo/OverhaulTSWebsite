@@ -38,6 +38,7 @@ import FreeInternship from './FreeInternship'
 import WhatsAppPopup from './WhatsappPopup'
 import EducationSupport from './EducationSupport'
 import CaseStudies from './sections/CaseStudies'
+import OpEd from './sections/OpEd'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -111,12 +112,27 @@ function App() {
                   Services
                 </Link>
 
-                <Link
-                  to="/case-studies"
-                  className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap"
-                >
-                  Case Studies & Op-Ed
-                </Link>
+                {/* Case Studies & Op-Ed Dropdown */}
+                <div className="relative group">
+                  <button className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap flex items-center">
+                    Case Studies & Op-Ed
+                    <ChevronDown className="ml-1 h-4 w-4" />
+                  </button>
+                  <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                    <Link
+                      to="/case-studies"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50 hover:text-teal-600 transition-colors"
+                    >
+                      Case Studies
+                    </Link>
+                    <Link
+                      to="/op-ed"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50 hover:text-teal-600 transition-colors"
+                    >
+                      Op-Ed
+                    </Link>
+                  </div>
+                </div>
                 {/* <a
                   href="#track-record"
                   className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap"
@@ -198,12 +214,12 @@ function App() {
               >
                 Services
               </a>
-              <Link
-                  to="/case-studies"
-                  className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap"
-                >
-                  Case Studies & Op-Ed
-              </Link>
+              {/* Case Studies & Op-Ed mobile */}
+              <div className="space-y-1">
+                <div className="text-gray-800 font-medium px-3 py-2 text-base">Case Studies & Op-Ed</div>
+                <Link to="/case-studies" className="text-gray-600 hover:text-teal-600 block px-6 py-2 text-sm" onClick={() => setIsMenuOpen(false)}>Case Studies</Link>
+                <Link to="/op-ed" className="text-gray-600 hover:text-teal-600 block px-6 py-2 text-sm" onClick={() => setIsMenuOpen(false)}>Op-Ed</Link>
+              </div>
               <a
                 href="#webinar"
                 className="text-gray-600 hover:text-teal-600 block px-3 py-2 text-base font-medium"
@@ -239,6 +255,7 @@ function App() {
         <Route path="/free-internship" element={<FreeInternship />} />
         <Route path="/education-support" element={<EducationSupport />} />
         <Route path="/case-studies" element={<CaseStudies />} />
+        <Route path="/op-ed" element={<OpEd />} />
       </Routes>
 
       {/* CTA Section - Only show on homepage */}
