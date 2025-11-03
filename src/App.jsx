@@ -39,10 +39,13 @@ import WhatsAppPopup from './WhatsappPopup'
 import EducationSupport from './EducationSupport'
 import CaseStudies from './sections/CaseStudies'
 import OpEd from './sections/OpEd'
+import FreeWebinar from './FreeWebinar'
+import LiveStreamConsultation from './LiveStreamConsultation'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false)
+  const [isWebinarDropdownOpen, setIsWebinarDropdownOpen] = useState(false)
 
   return (
     <div className="min-h-screen bg-white">
@@ -139,12 +142,39 @@ function App() {
                 >
                   Case Studies & Op-Ed
                 </a> */}
-                <a
-                  href="#webinar"
-                  className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap"
-                >
-                  Free Webinar & Live Consultation
-                </a>
+                {/* Free Webinar & Live Consultation Dropdown */}
+                <div className="relative">
+                  <button
+                    onClick={() => setIsWebinarDropdownOpen(!isWebinarDropdownOpen)}
+                    className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap flex items-center"
+                  >
+                    Free Webinar & Live Consultation
+                    <ChevronDown
+                      className={`ml-1 h-4 w-4 transition-transform ${
+                        isWebinarDropdownOpen ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+
+                  {isWebinarDropdownOpen && (
+                    <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50">
+                      <Link
+                        to="/free-webinar"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50 hover:text-teal-600 transition-colors"
+                        onClick={() => setIsWebinarDropdownOpen(false)}
+                      >
+                        Free Webinar
+                      </Link>
+                      <Link
+                        to="/live-stream-consultation"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50 hover:text-teal-600 transition-colors"
+                        onClick={() => setIsWebinarDropdownOpen(false)}
+                      >
+                        Live Stream Consultation
+                      </Link>
+                    </div>
+                  )}
+                </div>
                 <Link
                   to="/free-internship"
                   className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap"
@@ -220,12 +250,12 @@ function App() {
                 <Link to="/case-studies" className="text-gray-600 hover:text-teal-600 block px-6 py-2 text-sm" onClick={() => setIsMenuOpen(false)}>Case Studies</Link>
                 <Link to="/op-ed" className="text-gray-600 hover:text-teal-600 block px-6 py-2 text-sm" onClick={() => setIsMenuOpen(false)}>Op-Ed</Link>
               </div>
-              <a
-                href="#webinar"
-                className="text-gray-600 hover:text-teal-600 block px-3 py-2 text-base font-medium"
-              >
-                Free Webinar & Live Consultation
-              </a>
+              {/* Free Webinar & Live Consultation mobile */}
+              <div className="space-y-1">
+                <div className="text-gray-800 font-medium px-3 py-2 text-base">Free Webinar & Live Consultation</div>
+                <Link to="/free-webinar" className="text-gray-600 hover:text-teal-600 block px-6 py-2 text-sm" onClick={() => setIsMenuOpen(false)}>Free Webinar</Link>
+                <Link to="/live-stream-consultation" className="text-gray-600 hover:text-teal-600 block px-6 py-2 text-sm" onClick={() => setIsMenuOpen(false)}>Live Stream Consultation</Link>
+              </div>
               <Link
                 to="/free-internship"
                 className="text-gray-600 hover:text-teal-600 block px-3 py-2 text-base font-medium"
@@ -256,6 +286,8 @@ function App() {
         <Route path="/education-support" element={<EducationSupport />} />
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/op-ed" element={<OpEd />} />
+        <Route path="/free-webinar" element={<FreeWebinar />} />
+        <Route path="/live-stream-consultation" element={<LiveStreamConsultation />} />
       </Routes>
 
       {/* CTA Section - Only show on homepage */}
