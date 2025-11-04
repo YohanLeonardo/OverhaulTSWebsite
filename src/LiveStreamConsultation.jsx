@@ -3,6 +3,16 @@ import { Link } from 'react-router-dom'
 import { ChevronRight, CheckCircle, Download } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Button } from '@/components/ui/button.jsx'
+import flyer1 from './assets/flyer1.png'
+import flyer2 from './assets/flyer2.png'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog.jsx'
 import { Input } from '@/components/ui/input.jsx'
 import {
   Select,
@@ -21,13 +31,31 @@ const LiveStreamConsultation = () => {
     country: '',
   })
 
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [selectedFlyer, setSelectedFlyer] = useState(null)
+
   const handleInputChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
-  const handleDownload = (e) => {
+  const handleDownload = (e, which) => {
     e.preventDefault()
-    alert('Download flyer functionality will be available soon!')
+    const flyerMap = {
+      A: '/flyers/LiveStream-Consultation-Flyer-A.pdf',
+      B: '/flyers/LiveStream-Consultation-Flyer-B.pdf',
+    }
+
+    const href = flyerMap[which]
+    if (!href) return
+
+    const link = document.createElement('a')
+    link.href = href
+    link.download = href.split('/').pop()
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+
+    setIsDialogOpen(false)
   }
 
   return (
@@ -103,58 +131,94 @@ const LiveStreamConsultation = () => {
             </Card>
           </div>
 
-          {/* Right Column - Download Flyer Form */}
-          <div className="lg:sticky lg:top-8">
+          {/* Right Column - Flyer images with Download buttons */}
+          <div className="lg:sticky lg:top-8 space-y-6">
+            {/* Flyer A */}
             <Card className="bg-white shadow-xl border-0 rounded-2xl overflow-hidden">
-              <div className="bg-gradient-to-r from-teal-600 to-blue-600 p-6 text-white">
-                <div className="flex items-center space-x-3 mb-2">
-                  <Download className="h-6 w-6" />
-                  <h3 className="text-xl font-bold">Download Flyer</h3>
-                </div>
-                <p className="text-teal-100">Fill the form to download flyer</p>
-              </div>
-              <CardContent className="p-6">
-                <form onSubmit={handleDownload} className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">First name</label>
-                    <Input type="text" value={formData.firstName} onChange={(e) => handleInputChange('firstName', e.target.value)} placeholder="Enter your first name" required />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Last name</label>
-                    <Input type="text" value={formData.lastName} onChange={(e) => handleInputChange('lastName', e.target.value)} placeholder="Enter your last name" required />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Company/Organization</label>
-                    <Input type="text" value={formData.company} onChange={(e) => handleInputChange('company', e.target.value)} placeholder="Enter your company name" required />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Work email</label>
-                    <Input type="email" value={formData.email} onChange={(e) => handleInputChange('email', e.target.value)} placeholder="Enter your work email" required />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Select Country</label>
-                    <Select onValueChange={(value) => handleInputChange('country', value)} required>
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select your country" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="indonesia">Indonesia</SelectItem>
-                        <SelectItem value="singapore">Singapore</SelectItem>
-                        <SelectItem value="malaysia">Malaysia</SelectItem>
-                        <SelectItem value="thailand">Thailand</SelectItem>
-                        <SelectItem value="philippines">Philippines</SelectItem>
-                        <SelectItem value="vietnam">Vietnam</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <Button type="submit" className="w-full bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white py-3 text-lg font-semibold">
+              <CardContent className="p-0">
+                <img
+                  src={flyer1}
+                  className="w-full h-auto"
+                />
+                <div className="p-6">
+                  <Button
+                    onClick={() => { setSelectedFlyer('A'); setIsDialogOpen(true) }}
+                    className="w-full bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white py-3 text-lg font-semibold"
+                  >
                     <Download className="mr-2 h-5 w-5" /> Download Flyer
                   </Button>
-                </form>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Flyer B */}
+            <Card className="bg-white shadow-xl border-0 rounded-2xl overflow-hidden">
+              <CardContent className="p-0">
+                <img
+                  src={flyer2}
+                  className="w-full h-auto"
+                />
+                <div className="p-6">
+                  <Button
+                    onClick={() => { setSelectedFlyer('B'); setIsDialogOpen(true) }}
+                    className="w-full bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white py-3 text-lg font-semibold"
+                  >
+                    <Download className="mr-2 h-5 w-5" /> Download Flyer
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </div>
+
+          {/* Download Dialog */}
+          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Download Flyer</DialogTitle>
+                <DialogDescription>Fill out the form to receive the flyer.</DialogDescription>
+              </DialogHeader>
+              <form onSubmit={(e) => handleDownload(e, selectedFlyer)} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">First name</label>
+                  <Input type="text" value={formData.firstName} onChange={(e) => handleInputChange('firstName', e.target.value)} placeholder="Enter your first name" required />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Last name</label>
+                  <Input type="text" value={formData.lastName} onChange={(e) => handleInputChange('lastName', e.target.value)} placeholder="Enter your last name" required />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Company/Organization</label>
+                  <Input type="text" value={formData.company} onChange={(e) => handleInputChange('company', e.target.value)} placeholder="Enter your company name" required />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Work email</label>
+                  <Input type="email" value={formData.email} onChange={(e) => handleInputChange('email', e.target.value)} placeholder="Enter your work email" required />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Select Country</label>
+                  <Select onValueChange={(value) => handleInputChange('country', value)} required>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select your country" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="indonesia">Indonesia</SelectItem>
+                      <SelectItem value="singapore">Singapore</SelectItem>
+                      <SelectItem value="malaysia">Malaysia</SelectItem>
+                      <SelectItem value="thailand">Thailand</SelectItem>
+                      <SelectItem value="philippines">Philippines</SelectItem>
+                      <SelectItem value="vietnam">Vietnam</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <DialogFooter>
+                  <Button type="submit" className="w-full bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white py-3 text-lg font-semibold">
+                    <Download className="mr-2 h-5 w-5" /> Download
+                  </Button>
+                </DialogFooter>
+              </form>
+            </DialogContent>
+          </Dialog>
         </div>
       </section>
     </div>

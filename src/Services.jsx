@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Card,
@@ -14,8 +14,15 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog.jsx'
+import { Input } from '@/components/ui/input.jsx'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select.jsx'
 import {
   Settings,
   Brain,
@@ -25,7 +32,7 @@ import {
   CheckCircle,
   ChevronRight,
 } from 'lucide-react'
-import { motion } from 'framer-motion'
+ 
 
 const servicesData = [
   {
@@ -131,6 +138,21 @@ const servicesData = [
 ]
 
 const ServicesPage = () => {
+  const [isRpaDialogOpen, setIsRpaDialogOpen] = useState(false)
+  const [rpaForm, setRpaForm] = useState({ firstName: '', lastName: '', company: '', email: '', country: '' })
+
+  const handleRpaChange = (field, value) => setRpaForm((p) => ({ ...p, [field]: value }))
+  const handleRpaDownload = (e) => {
+    e.preventDefault()
+    const a = document.createElement('a')
+    a.href = '/brochures/RPA-Brochure.pdf'
+    a.download = 'RPA-Brochure.pdf'
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    setIsRpaDialogOpen(false)
+  }
+
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumb */}
@@ -144,131 +166,151 @@ const ServicesPage = () => {
         </div>
       </div>
 
-      <section id="services" className="py-20 bg-white">
+      {/* Header */}
+      <section className="bg-gradient-to-r from-teal-600 to-blue-600 text-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl lg:text-5xl font-bold mb-4">Services</h1>
+          <p className="text-lg text-teal-100 max-w-4xl mx-auto">
+            We help organizations accelerate digital transformation with hands-on expertise in automation, data, product, and people.
+          </p>
+        </div>
+      </section>
+
+      <section id="services" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Our Services
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              TS resources, the partners and the engineering team, comprehend
-              the set of expertise needed for TS to perform its mission and
-              deliver its services with high standard . These are the most
-              needed services when it comes to corporate/ organization
-              digitalization:
-            </p>
+          {/* Featured: RPA */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-20">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Work Process Streamlining & Automation (RPA)</h2>
+              <p className="text-gray-700 mb-6">
+                Indonesian hands-on experts delivering end-to-end automation — from discovery and PoC to scaled rollouts and Centers of Excellence.
+              </p>
+              <ul className="space-y-2 mb-8">
+                {[
+                  'Free webinar RPA introduction',
+                  "Live coaching/workshop: Make your very first robots",
+                  'PoC process automation trial case',
+                  'Discovering the Right Strategy to start RPA',
+                  'RPA design and development for your organization',
+                  'The Invisible Reality Behind Process Automation',
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start text-gray-700"><CheckCircle className="h-4 w-4 text-teal-600 mt-1 mr-2" />{item}</li>
+                ))}
+              </ul>
+              <Button onClick={() => setIsRpaDialogOpen(true)} className="bg-teal-600 hover:bg-teal-700 text-white">
+                Download RPA Brochure
+              </Button>
+            </div>
+            <div>
+              <Card className="border-0 shadow-xl rounded-2xl">
+                <CardHeader>
+                  <CardTitle>What you get</CardTitle>
+                  <CardDescription>Structured delivery with measurable outcomes</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-4">
+                    {['Process Analysis', 'Bot Development', 'Governance & CoE', 'Change Management', 'Runbooks', 'Monitoring & ROI'].map((f, idx) => (
+                      <div key={idx} className="flex items-center bg-gray-50 rounded-lg px-3 py-2">
+                        <CheckCircle className="h-4 w-4 text-teal-600 mr-2" />
+                        <span className="text-sm text-gray-700">{f}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8">
-            {servicesData.map((service, index) => {
+          {/* Other services as distinct blocks */}
+          <div className="space-y-16">
+            {[servicesData[1], servicesData[2], servicesData[3], servicesData[4]].map((service, idx) => {
               const IconComponent = service.icon
               return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, margin: '-100px' }}
-                  transition={{
-                    duration: 0.6,
-                    delay: index * 0.1,
-                    ease: 'easeOut',
-                  }}
-                >
-                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
-                    <CardHeader>
-                      <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <IconComponent className="h-6 w-6 text-teal-600" />
-                        </div>
-                        <div>
-                          <CardTitle className="text-xl mb-2">
-                            {service.title}
-                          </CardTitle>
-                          <CardDescription className="text-gray-600">
-                            {service.description}
-                          </CardDescription>
-                        </div>
+                <div key={service.title} className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-center`}>
+                  <div>
+                    <div className="flex items-center mb-4">
+                      <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mr-3">
+                        <IconComponent className="h-6 w-6 text-teal-600" />
                       </div>
+                      <h3 className="text-2xl font-semibold text-gray-900">{service.title}</h3>
+                    </div>
+                    <p className="text-gray-700 mb-6">{service.description}</p>
+                    <ul className="space-y-2">
+                      {service.detailedFeatures.slice(0, 4).map((item, i) => (
+                        <li key={i} className="flex items-start text-gray-700"><CheckCircle className="h-4 w-4 text-teal-600 mt-1 mr-2" />{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <Card className="border-0 shadow-lg rounded-2xl">
+                    <CardHeader>
+                      <CardTitle>Highlights</CardTitle>
+                      <CardDescription>Key focus areas we deliver</CardDescription>
                     </CardHeader>
-                    <CardContent className="flex-grow flex flex-col">
-                      <div className="grid grid-cols-2 gap-2 flex-grow">
-                        {service.features.map((feature, featureIndex) => (
-                          <div key={featureIndex} className="flex items-center">
-                            <CheckCircle className="h-4 w-4 text-teal-500 mr-2" />
-                            <span className="text-sm text-gray-600">
-                              {feature}
-                            </span>
+                    <CardContent>
+                      <div className="grid grid-cols-2 gap-3">
+                        {service.features.map((f, i) => (
+                          <div key={i} className="flex items-center bg-gray-50 rounded-lg px-3 py-2">
+                            <CheckCircle className="h-4 w-4 text-teal-600 mr-2" />
+                            <span className="text-sm text-gray-700">{f}</span>
                           </div>
                         ))}
                       </div>
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button
-                            variant="outline"
-                            className="w-full mt-4 border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white"
-                          >
-                            Learn More
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto bg-white rounded-2xl border-0 shadow-2xl p-0">
-                          <div className="relative">
-                            {/* Header with gradient background */}
-                            <div className="bg-gradient-to-r from-teal-600 to-teal-700 p-8 rounded-t-2xl">
-                              <DialogHeader>
-                                <DialogTitle className="text-2xl font-bold text-white mb-3">
-                                  {service.title}
-                                </DialogTitle>
-                                <DialogDescription className="text-teal-100 text-lg leading-relaxed">
-                                  {service.detailedDescription}
-                                </DialogDescription>
-                              </DialogHeader>
-                            </div>
-
-                            {/* Content area */}
-                            <div className="p-8">
-                              <div className="space-y-4">
-                                {service.detailedFeatures.map(
-                                  (feature, featureIndex) => (
-                                    <div
-                                      key={featureIndex}
-                                      className="flex items-start bg-gray-50 p-4 rounded-lg hover:bg-gray-100 transition-colors"
-                                    >
-                                      <div className="w-6 h-6 bg-teal-600 rounded-full flex items-center justify-center mr-4 mt-0.5 flex-shrink-0">
-                                        <span className="text-white text-sm font-bold">
-                                          •
-                                        </span>
-                                      </div>
-                                      <span className="text-gray-800 leading-relaxed">
-                                        {feature}
-                                      </span>
-                                    </div>
-                                  )
-                                )}
-                              </div>
-
-                              {/* Call to action */}
-                              <div className="mt-8 pt-6 border-t border-gray-200">
-                                <div className="text-center">
-                                  <p className="text-gray-600 mb-4">
-                                    Ready to get started with this service?
-                                  </p>
-                                  <Button className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-2 rounded-lg">
-                                    Contact Us Today
-                                  </Button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </DialogContent>
-                      </Dialog>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </div>
               )
             })}
           </div>
+
+          
         </div>
       </section>
+
+      {/* RPA brochure dialog */}
+      <Dialog open={isRpaDialogOpen} onOpenChange={setIsRpaDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Download RPA Brochure</DialogTitle>
+            <DialogDescription>Fill the form to receive the brochure.</DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleRpaDownload} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">First name</label>
+              <Input value={rpaForm.firstName} onChange={(e) => handleRpaChange('firstName', e.target.value)} required />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Last name</label>
+              <Input value={rpaForm.lastName} onChange={(e) => handleRpaChange('lastName', e.target.value)} required />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Company/Organization</label>
+              <Input value={rpaForm.company} onChange={(e) => handleRpaChange('company', e.target.value)} required />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Work email</label>
+              <Input type="email" value={rpaForm.email} onChange={(e) => handleRpaChange('email', e.target.value)} required />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Select Country</label>
+              <Select onValueChange={(v) => handleRpaChange('country', v)} required>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select your country" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="indonesia">Indonesia</SelectItem>
+                  <SelectItem value="singapore">Singapore</SelectItem>
+                  <SelectItem value="malaysia">Malaysia</SelectItem>
+                  <SelectItem value="thailand">Thailand</SelectItem>
+                  <SelectItem value="philippines">Philippines</SelectItem>
+                  <SelectItem value="vietnam">Vietnam</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <Button type="submit" className="w-full bg-teal-600 hover:bg-teal-700 text-white">Download</Button>
+          </form>
+        </DialogContent>
+      </Dialog>
 
       {/* Footer */}
       <footer className="bg-slate-900 text-white py-12">

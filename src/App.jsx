@@ -45,6 +45,7 @@ import LiveStreamConsultation from './LiveStreamConsultation'
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false)
+  const [isCaseDropdownOpen, setIsCaseDropdownOpen] = useState(false)
   const [isWebinarDropdownOpen, setIsWebinarDropdownOpen] = useState(false)
 
   return (
@@ -115,26 +116,37 @@ function App() {
                   Services
                 </Link>
 
-                {/* Case Studies & Op-Ed Dropdown */}
-                <div className="relative group">
-                  <button className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap flex items-center">
+                {/* Case Studies & Op-Ed Dropdown (click-to-toggle) */}
+                <div className="relative">
+                  <button
+                    onClick={() => setIsCaseDropdownOpen(!isCaseDropdownOpen)}
+                    className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap flex items-center"
+                  >
                     Case Studies & Op-Ed
-                    <ChevronDown className="ml-1 h-4 w-4" />
+                    <ChevronDown
+                      className={`ml-1 h-4 w-4 transition-transform ${
+                        isCaseDropdownOpen ? 'rotate-180' : ''
+                      }`}
+                    />
                   </button>
-                  <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                    <Link
-                      to="/case-studies"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50 hover:text-teal-600 transition-colors"
-                    >
-                      Case Studies
-                    </Link>
-                    <Link
-                      to="/op-ed"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50 hover:text-teal-600 transition-colors"
-                    >
-                      Op-Ed
-                    </Link>
-                  </div>
+                  {isCaseDropdownOpen && (
+                    <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50">
+                      <Link
+                        to="/case-studies"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50 hover:text-teal-600 transition-colors"
+                        onClick={() => setIsCaseDropdownOpen(false)}
+                      >
+                        Case Studies
+                      </Link>
+                      <Link
+                        to="/op-ed"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50 hover:text-teal-600 transition-colors"
+                        onClick={() => setIsCaseDropdownOpen(false)}
+                      >
+                        Op-Ed
+                      </Link>
+                    </div>
+                  )}
                 </div>
                 {/* <a
                   href="#track-record"
