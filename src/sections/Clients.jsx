@@ -20,7 +20,10 @@ const clientsData = [
   { name: "Infomedia", logo: "/logos/infomedia.png" },
   { name: "Yayasan Pendidikan Warga", logo: "/logos/yayasan.png" },
   { name: "Nestle", logo: "/logos/nestle.png" },
-  { name: "Pegadaian", logo: "/logos/pegadaian.png" }
+  { name: "Pegadaian", logo: "/logos/pegadaian.png" },
+
+  { name: 'BMI', logo: '/logos/logo_bmi.png'},
+  { name: 'BSI', logo: '/logos/logo_bsi.jpg'},
 ];
 
 const Clients = () => {

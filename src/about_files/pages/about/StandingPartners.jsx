@@ -8,7 +8,7 @@ import { Users, Award, Briefcase, Star, ChevronRight } from 'lucide-react'
 import anasImage from '../../../assets/anas-pp-Small.png'
 import indraImage from '../../../assets/indra-pp-Small.png'
 import joeImage from '../../../assets/joe-pp-Small.png'
-import tataImage from '../../../assets/tata-pp-Small.png'
+// import tataImage from '../../../assets/tata-pp-Small.png'
 import bambangImage from '../../../assets/bambang-pp-Small.png'
 import benawiImage from '../../../assets/Benawi-Santosa-pp-Small.png'
 import suryatinImage from '../../../assets/Suryatin-pp-Small.png'
@@ -81,22 +81,22 @@ const StandingPartners = () => {
         'Scrum and agile software engineering methodology adoption',
       ],
     },
-    {
-      id: 'tata',
-      name: 'Tata Wirasasmita',
-      title: 'Data Analytics & Human Capital Management',
-      image: tataImage,
-      category: 'Data Science',
-      achievements: [
-        'Master of Management and Statistics background',
-        'Data analytics specialist in human capital management',
-        'Multi-industry project experience: agro business, Jakarta Stock Exchange',
-        'Banking and education sector expertise',
-        'Unique combination of human capital management and data analytics skills',
-        'Statistical modeling and workforce optimization specialist',
-        'Cross-sector analytical solutions provider',
-      ],
-    },
+    // {
+    //   id: 'tata',
+    //   name: 'Tata Wirasasmita',
+    //   title: 'Data Analytics & Human Capital Management',
+    //   image: tataImage,
+    //   category: 'Data Science',
+    //   achievements: [
+    //     'Master of Management and Statistics background',
+    //     'Data analytics specialist in human capital management',
+    //     'Multi-industry project experience: agro business, Jakarta Stock Exchange',
+    //     'Banking and education sector expertise',
+    //     'Unique combination of human capital management and data analytics skills',
+    //     'Statistical modeling and workforce optimization specialist',
+    //     'Cross-sector analytical solutions provider',
+    //   ],
+    // },
     {
       id: 'indra',
       name: 'Indra Rachmat',

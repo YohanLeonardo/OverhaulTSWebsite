@@ -76,6 +76,29 @@ const achievementsData = [
       "Network Service Area Manager Training",
       "Branch Manager Training"
     ]
+  },
+{
+    company: "BMI (PT Bumi Menara Internusa)",
+    logo: "/logos/logo_bmi.png",
+    title: "RPA Export Documentation Automation",
+    description: [
+      "Automated export documentation preparation using RPA",
+      "Managed documentation workflows involving multiple departments/divisions",
+      "Facilitated automated access to various export authority portals",
+      "Covered pre-shipment and post-shipment documentation phases"
+    ]
+  },
+  {
+    company: "BSI Syariah",
+    logo: "/logos/logo_bsi.jpg",
+    title: "Smart Vault System Implementation (Bullion Bank)",
+    description: [
+      "Designed and implemented a Smart Vault system for Bullion Bank",
+      "Developed a comprehensive system covering both hardware and software",
+      "Applied IoT technology to optimize business processes",
+      "Integrated the Smart Vault system with existing applications and solutions",
+      "Pioneered the design and implementation of Bullion Bank digitalization in Indonesia"
+    ]
   }
 ];
 
