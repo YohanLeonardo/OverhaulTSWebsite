@@ -115,20 +115,6 @@ const OpEd = () => {
           </div>
         </div>
       </section>
-
-      {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-teal-600 to-blue-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">Have a topic you want us to cover?</h2>
-          <p className="text-xl mb-8 text-teal-100 max-w-3xl mx-auto">We love sharing practical perspectives grounded in real projects across Indonesia.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-white text-teal-600 hover:bg-gray-100 px-8 py-3">Request an Article</Button>
-            <a href="https://bandungtalentsource.com/articles/" target="_blank" rel="noopener noreferrer" className="block">
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-teal-600 px-8 py-3">View All on Site</Button>
-            </a>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
