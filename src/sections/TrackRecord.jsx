@@ -89,7 +89,7 @@ const achievementsData = [
     ]
   },
   {
-    company: "BSI Syariah",
+    company: "BSI",
     logo: "/logos/logo_bsi.jpg",
     title: "Smart Vault System Implementation (Bullion Bank)",
     description: [
