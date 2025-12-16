@@ -37,7 +37,7 @@ const caseStudiesData = [
     ],
     image:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-    link: "https://bandungtalentsource.com/case-studies/"
+    link: "/Case_Studies.pdf"
   },
   {
     id: 2,
@@ -49,7 +49,7 @@ const caseStudiesData = [
     technologies: ["Data Analytics", "Segmentation", "Education"],
     image:
       "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80",
-    link: "https://bandungtalentsource.com/case-studies/"
+    link: "/Case_Studies.pdf"
   },
   {
     id: 3,
@@ -62,7 +62,7 @@ const caseStudiesData = [
     technologies: ["Behavior Analysis", "Customer Insights", "Banking"],
     image:
       "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80",
-    link: "https://bandungtalentsource.com/case-studies/"
+    link: "/Case_Studies.pdf"
   },
   {
     id: 4,
@@ -74,7 +74,7 @@ const caseStudiesData = [
     technologies: ["BPI/BPR", "RPA", "Workflow Automation"],
     image:
       "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1200&q=80",
-    link: "https://bandungtalentsource.com/case-studies/"
+    link: "/Case_Studies.pdf"
   },
   {
     id: 5,
@@ -87,7 +87,7 @@ const caseStudiesData = [
     technologies: ["Knowledge Management", "UX", "Internal Tools"],
     image:
       "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?auto=format&fit=crop&w=1200&q=80",
-    link: "https://bandungtalentsource.com/case-studies/"
+    link: "/Case_Studies.pdf"
   }
 ];
 
@@ -244,7 +244,7 @@ const CaseStudies = () => {
                           className="w-full border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white"
                           variant="outline"
                         >
-                          Download Case Study
+                          Download Case Studies (PDF)
                           <ArrowRight className="h-4 w-4 ml-2" />
                         </Button>
                       </a>

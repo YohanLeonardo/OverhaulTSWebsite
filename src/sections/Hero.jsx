@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from '@/components/ui/button.jsx'
+import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge.jsx'
 import { CheckCircle, ArrowRight } from 'lucide-react'
 import heroBg from '../assets/hero-bg.jpg'
@@ -33,17 +34,19 @@ const Hero = () => {
               agenda forward.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                size="lg"
-                className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3"
-              >
-                Start Your Digital Journey
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+              <Link to="/services">
+                <Button
+                  size="lg"
+                  className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3"
+                >
+                  Start Your Digital Journey
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-slate-900 bg-white px-8 py-3"
+                className="border-white text-slate-900 bg-white hover:bg-gray-100 px-8 py-3"
                 onClick={() => {
                   document.getElementById('track-record')?.scrollIntoView({
                     behavior: 'smooth',
