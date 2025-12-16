@@ -1,34 +1,14 @@
 import React from 'react'
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/button.jsx'
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card.jsx'
-import { Badge } from '@/components/ui/badge.jsx'
-import {
-  Settings,
-  Brain,
-  Smartphone,
-  Users,
-  TrendingUp,
-  CheckCircle,
-  ArrowRight,
   Menu,
   X,
   ChevronDown,
 } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './styles/App.css'
 import logo from './assets/logo-new.png'
-import Hero from './sections/Hero'
-import About from './sections/About'
-import Services from './sections/Services'
-import TrackRecord from './sections/TrackRecord'
-import Clients from './sections/Clients'
 import HomePage from './about_files/pages/HomePage'
 import CompanyProfile from './about_files/pages/about/CompanyProfile'
 import StandingPartners from './about_files/pages/about/StandingPartners'
@@ -38,15 +18,63 @@ import FreeInternship from './FreeInternship'
 import WhatsAppPopup from './WhatsappPopup'
 import EducationSupport from './EducationSupport'
 import CaseStudies from './sections/CaseStudies'
-import OpEd from './sections/OpEd'
+import { OpEd } from './sections/OpEd'
 import FreeWebinar from './FreeWebinar'
 import LiveStreamConsultation from './LiveStreamConsultation'
+import ArticlePage from './ArticlePage'
+
+// Custom hook to scroll to top on route change
+const ScrollToTop = () => {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+
+  return null
+}
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false)
   const [isCaseDropdownOpen, setIsCaseDropdownOpen] = useState(false)
   const [isWebinarDropdownOpen, setIsWebinarDropdownOpen] = useState(false)
+
+  const aboutRef = useRef(null)
+  const caseRef = useRef(null)
+  const webinarRef = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (aboutRef.current && !aboutRef.current.contains(event.target)) {
+        setIsAboutDropdownOpen(false)
+      }
+      if (caseRef.current && !caseRef.current.contains(event.target)) {
+        setIsCaseDropdownOpen(false)
+      }
+      if (webinarRef.current && !webinarRef.current.contains(event.target)) {
+        setIsWebinarDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
+  // --- FUNGSI BARU: Handle WhatsApp Click ---
+  const handleScheduleConsultation = () => {
+    const fixedPhoneNumber = '6281770237849' // Nomor yang sama dengan WhatsAppPopup
+    const message = 'Halo, saya ingin menjadwalkan konsultasi bisnis dengan TalentSource.' // Pesan default
+    
+    const whatsappUrl = `https://wa.me/${fixedPhoneNumber}?text=${encodeURIComponent(
+      message
+    )}`
+    
+    window.open(whatsappUrl, '_blank')
+  }
+  // -----------------------------------------
 
   return (
     <div className="min-h-screen bg-white">
@@ -68,7 +96,7 @@ function App() {
             <div className="hidden xl:block">
               <div className="ml-10 flex items-baseline space-x-6">
                 {/* About Us Dropdown */}
-                <div className="relative">
+                <div className="relative" ref={aboutRef}>
                   <button
                     onClick={() => setIsAboutDropdownOpen(!isAboutDropdownOpen)}
                     className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap flex items-center"
@@ -117,7 +145,7 @@ function App() {
                 </Link>
 
                 {/* Case Studies & Op-Ed Dropdown (click-to-toggle) */}
-                <div className="relative">
+                <div className="relative" ref={caseRef}>
                   <button
                     onClick={() => setIsCaseDropdownOpen(!isCaseDropdownOpen)}
                     className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap flex items-center"
@@ -148,14 +176,9 @@ function App() {
                     </div>
                   )}
                 </div>
-                {/* <a
-                  href="#track-record"
-                  className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap"
-                >
-                  Case Studies & Op-Ed
-                </a> */}
+
                 {/* Free Webinar & Live Consultation Dropdown */}
-                <div className="relative">
+                <div className="relative" ref={webinarRef}>
                   <button
                     onClick={() => setIsWebinarDropdownOpen(!isWebinarDropdownOpen)}
                     className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap flex items-center"
@@ -250,12 +273,13 @@ function App() {
                 </Link>
               </div>
 
-              <a
-                href="#services"
+              <Link
+                to="/services"
                 className="text-gray-600 hover:text-teal-600 block px-3 py-2 text-base font-medium"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Services
-              </a>
+              </Link>
               {/* Case Studies & Op-Ed mobile */}
               <div className="space-y-1">
                 <div className="text-gray-800 font-medium px-3 py-2 text-base">Case Studies & Op-Ed</div>
@@ -288,8 +312,9 @@ function App() {
       </nav>
 
       {/* Main Content with Routing */}
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+      <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
         <Route path="/company-profile" element={<CompanyProfile />} />
         <Route path="/standing-partners" element={<StandingPartners />} />
         <Route path="/corporate-partners" element={<CorporatePartners />} />
@@ -297,7 +322,8 @@ function App() {
         <Route path="/free-internship" element={<FreeInternship />} />
         <Route path="/education-support" element={<EducationSupport />} />
         <Route path="/case-studies" element={<CaseStudies />} />
-        <Route path="/op-ed" element={<OpEd />} />
+            <Route path="/op-ed" element={<OpEd />} />
+            <Route path="/op-ed/:articleId" element={<ArticlePage />} />
         <Route path="/free-webinar" element={<FreeWebinar />} />
         <Route path="/live-stream-consultation" element={<LiveStreamConsultation />} />
       </Routes>
@@ -321,6 +347,7 @@ function App() {
                   <Button
                     size="lg"
                     className="bg-white text-teal-600 hover:bg-gray-100 px-8 py-3"
+                    onClick={handleScheduleConsultation} // FUNGSI DITAMBAHKAN DISINI
                   >
                     Schedule a Consultation
                   </Button>
@@ -346,69 +373,40 @@ function App() {
                 IT service companies in Indonesia.
               </p>
             </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Services</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    RPA & Automation
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Data Science & AI
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Mobile Development
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Talent Development
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Digital Strategy
-                  </a>
-                </li>
-              </ul>
-            </div>
+
             <div>
               <h3 className="text-lg font-semibold mb-4">Company</h3>
               <ul className="space-y-2 text-gray-400">
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <Link to="/company-profile" className="hover:text-white transition-colors">
                     About Us
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <Link to="/case-studies" className="hover:text-white transition-colors">
                     Case Studies
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <Link to="/free-webinar" className="hover:text-white transition-colors">
                     Free Webinar
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <Link to="/free-internship" className="hover:text-white transition-colors">
                     Internship Program
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <Link to="/education-support" className="hover:text-white transition-colors">
                     Education Support
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Bandung TalentSource. All rights reserved.</p>
+            <p>&copy; 2026 Bandung TalentSource. All rights reserved.</p>
           </div>
         </div>
       </footer>

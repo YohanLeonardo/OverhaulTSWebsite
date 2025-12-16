@@ -39,9 +39,20 @@ const CompanyProfile = () => {
 
   const handleDownload = (e) => {
     e.preventDefault()
-    // Deadlink for now - will connect to backend later
+    // In a real application, this would send data to a backend and then trigger a download.
+    // Since we don't have a backend, we simulate the download directly after form submission.
     console.log('Download requested with data:', formData)
-    alert('Download functionality will be available soon!')
+    
+    // Simulate download of a placeholder file
+    const downloadUrl = '/TalentSource_Company_Profile.pdf' // Link to the dummy PDF
+    const a = document.createElement('a')
+    a.href = downloadUrl
+    a.download = 'TalentSource_Company_Profile.pdf'
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    
+    alert('Thank you! Your download has started.')
   }
 
   return (
@@ -173,7 +184,7 @@ const CompanyProfile = () => {
                 <Card className="text-center p-6 bg-gradient-to-br from-teal-50 to-blue-50 border-0">
                   <CardContent className="p-0">
                     <Award className="h-8 w-8 text-teal-600 mx-auto mb-3" />
-                    <h3 className="text-2xl font-bold text-gray-900">5+</h3>
+                    <h3 className="text-2xl font-bold text-gray-900">20+</h3>
                     <p className="text-gray-600">Years Experience</p>
                   </CardContent>
                 </Card>

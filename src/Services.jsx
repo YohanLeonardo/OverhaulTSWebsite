@@ -145,7 +145,7 @@ const ServicesPage = () => {
   const handleRpaDownload = (e) => {
     e.preventDefault()
     const a = document.createElement('a')
-    a.href = '/brochures/RPA-Brochure.pdf'
+    a.href = '/RPA-Brochure.pdf'
     a.download = 'RPA-Brochure.pdf'
     document.body.appendChild(a)
     a.click()
