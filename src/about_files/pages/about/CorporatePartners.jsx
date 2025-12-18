@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { Card, CardContent } from '../../../components/ui/card'
 import { CheckCircle, ChevronRight } from 'lucide-react'
 import tujuhSembilanLogo from '../../../assets/tujuh-sembilan-logo.png'
+import ioteraLogo from '../../../assets/logo_iotera.jpg'
+
 
 const CorporatePartners = () => {
   const partnershipCriteria = [
@@ -32,6 +34,13 @@ const CorporatePartners = () => {
         'In December 2019, TS sealed-in a strategic long-term partnership agreement with a vibrant high performing digital service start-up in Bandung which strategically combine the complementing resources of the two companies',
       establishedDate: 'December 2019',
       partnershipType: 'Strategic Long-term Partnership',
+    },
+    {
+      id: 'iotera',
+      logo: ioteraLogo,
+      description: 'Partnership for turnkey projects, covering systems and subsystems, utilizing IoT technology for various industries',
+      establishedDate: 'August 2023',
+      partnershipType: 'Strategic Technical and Business Partnership',
     },
   ]
 
@@ -69,10 +78,10 @@ const CorporatePartners = () => {
 
       {/* Main Content */}
       <div className="container mx-auto px-6 py-16">
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="space-y-4">
           {/* Left Column - Partnership Criteria */}
           <div>
-            <Card className="bg-white shadow-lg border-0 h-full">
+            <Card className="bg-white shadow-lg border-0 h-fit">
               <CardContent className="p-8">
                 <h2 className="text-3xl font-bold text-gray-900 mb-8">
                   TS has standing partnership agreement with company which:
@@ -110,7 +119,7 @@ const CorporatePartners = () => {
           </div>
 
           {/* Right Column - Partner Showcase */}
-          <div>
+          <div className='h-fit'>
             {partners.map((partner) => (
               <Card key={partner.id} className="bg-white shadow-lg border-0">
                 <CardContent className="p-8">

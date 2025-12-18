@@ -160,9 +160,15 @@ const Services = () => {
                             <div className="mt-8 pt-6 border-t border-gray-200">
                               <div className="text-center">
                                 <p className="text-gray-600 mb-4">Ready to get started with this service?</p>
-                                <Button className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-2 rounded-lg">
-                                  Contact Us Today
-                                </Button>
+                                <a
+                                  href={`https://wa.me/6281770237849?text=Halo, saya tertarik dengan layanan ${service.title}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  <Button className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-2 rounded-lg">
+                                    Contact Us Today
+                                  </Button>
+                                </a>
                               </div>
                             </div>
                           </div>

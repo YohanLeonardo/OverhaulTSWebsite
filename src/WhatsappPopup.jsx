@@ -6,7 +6,7 @@ import frigardIcon from './assets/firgard-Small.png'
 const WhatsAppPopup = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isChatOpen, setIsChatOpen] = useState(false)
-  const fixedPhoneNumber = '6289655559999' // ganti dengan nomor kontak Customer Service
+  const fixedPhoneNumber = '6281770237849' // ganti dengan nomor kontak pak Frigard
   const [message, setMessage] = useState('')
 
   const handleSendMessage = () => {
