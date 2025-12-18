@@ -46,7 +46,7 @@ const Hero = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-slate-900 bg-white hover:bg-gray-100 px-8 py-3"
+                className="border-white text-slate-900 bg-white hover:bg-gray-200 px-8 py-3"
                 onClick={() => {
                   document.getElementById('track-record')?.scrollIntoView({
                     behavior: 'smooth',
