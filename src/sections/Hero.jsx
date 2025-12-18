@@ -33,8 +33,8 @@ const Hero = () => {
               consulting, and hands-on projects to drive your digitalization
               agenda forward.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md sm:max-w-none">
-              <Link to="/services" className="w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="/services">
                 <Button
                   size="lg"
                   className="w-full sm:w-auto bg-teal-600 hover:bg-teal-700 text-white px-8 py-3"
