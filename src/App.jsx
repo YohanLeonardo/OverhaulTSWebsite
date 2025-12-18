@@ -572,19 +572,11 @@ function App() {
                     </div>
 
                     {/* Copyright Section */}
-                    <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                    <div className="border-t border-slate-800 mt-12 pt-8 flex justify-center items-center text-sm text-gray-500">
                         <p>
                             &copy; 2026 Bandung TalentSource. All rights
                             reserved.
                         </p>
-                        <div className="flex space-x-6 mt-4 md:mt-0">
-                            <Link to="/privacy" className="hover:text-white">
-                                Privacy Policy
-                            </Link>
-                            <Link to="/terms" className="hover:text-white">
-                                Terms of Service
-                            </Link>
-                        </div>
                     </div>
                 </div>
             </footer>
