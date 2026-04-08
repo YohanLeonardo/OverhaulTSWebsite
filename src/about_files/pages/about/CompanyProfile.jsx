@@ -39,15 +39,12 @@ const CompanyProfile = () => {
 
     const handleDownload = (e) => {
         e.preventDefault()
-        // In a real application, this would send data to a backend and then trigger a download.
-        // Since we don't have a backend, we simulate the download directly after form submission.
         console.log('Download requested with data:', formData)
 
-        // Simulate download of a placeholder file
-        const downloadUrl = '/TalentSource_Company_Profile.pdf' // Link to the dummy PDF
+        const downloadUrl = '/Company-Profile-TS-2022.pdf'
         const a = document.createElement('a')
         a.href = downloadUrl
-        a.download = 'TalentSource_Company_Profile.pdf'
+        a.download = 'Company-Profile-TS-2022.pdf'
         document.body.appendChild(a)
         a.click()
         document.body.removeChild(a)
@@ -241,7 +238,7 @@ const CompanyProfile = () => {
                                                 onChange={(e) =>
                                                     handleInputChange(
                                                         'firstName',
-                                                        e.target.value
+                                                        e.target.value,
                                                     )
                                                 }
                                                 placeholder="Enter your first name"
@@ -260,7 +257,7 @@ const CompanyProfile = () => {
                                                 onChange={(e) =>
                                                     handleInputChange(
                                                         'lastName',
-                                                        e.target.value
+                                                        e.target.value,
                                                     )
                                                 }
                                                 placeholder="Enter your last name"
@@ -279,7 +276,7 @@ const CompanyProfile = () => {
                                                 onChange={(e) =>
                                                     handleInputChange(
                                                         'company',
-                                                        e.target.value
+                                                        e.target.value,
                                                     )
                                                 }
                                                 placeholder="Enter your company name"
@@ -298,7 +295,7 @@ const CompanyProfile = () => {
                                                 onChange={(e) =>
                                                     handleInputChange(
                                                         'email',
-                                                        e.target.value
+                                                        e.target.value,
                                                     )
                                                 }
                                                 placeholder="Enter your work email"
@@ -315,7 +312,7 @@ const CompanyProfile = () => {
                                                 onValueChange={(value) =>
                                                     handleInputChange(
                                                         'country',
-                                                        value
+                                                        value,
                                                     )
                                                 }
                                                 required
