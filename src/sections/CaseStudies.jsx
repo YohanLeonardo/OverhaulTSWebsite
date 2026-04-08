@@ -9,6 +9,8 @@ import {
 } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import Case2Img from '../assets/Case2.jpg'
+import Case6Img from '../assets/Case6.jpg'
 import {
     Building2,
     TrendingUp,
@@ -52,7 +54,7 @@ const caseStudiesData = [
         description:
             'Selama pandemi COVID-19, sekolah ingin menyalurkan dukungan secara tepat sasaran dengan menganalisis data orang tua/keluarga dan menghindari salah alokasi.',
         technologies: ['Data Analytics', 'Segmentation', 'Education'],
-        image: 'src\assets\Case2.jpg',
+        image: Case2Img,
         link: '/TS-DS-CaseStudy-StudentsProfilling-121221.pdf',
     },
     {
@@ -100,7 +102,7 @@ const caseStudiesData = [
             'Process Automation',
             'Cost Reduction',
         ],
-        image: 'src\assets\Case6.jpg',
+        image: Case6Img,
         link: '/Case-Study-Insurance-Claim.pdf',
     },
 ]
