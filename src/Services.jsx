@@ -49,7 +49,7 @@ const servicesData = [
             'Gain essential skills to leverage GenAI in your professional and personal life:',
         detailedFeatures: [
             'Direct GenAI precisely according to your intentions and needs',
-            'Taught by Suryatin Setiawan, Bambang Lusmiadi, and our GenAI specialist team',
+            'GenAI story line, prompt engineering insights, on-the spot prompting practice workshop aligned with participants professional need presented by TalentSource senior partners and GenAI specialists',
             'Flexible timing upon agreement (max 3 hours duration)',
             'Exclusive session with limited slots for 30-40 participants',
             "Hands-on session at the client's location (bring your own laptop)",
@@ -215,7 +215,7 @@ const ServicesPage = () => {
                                             key={i}
                                             className="flex items-start text-gray-700"
                                         >
-                                            <CheckCircle className="h-4 w-4 text-teal-600 mt-1 mr-2" />
+                                            <CheckCircle className="h-4 w-4 text-teal-600 mt-1 mr-2 flex-shrink-0" />
                                             {item}
                                         </li>
                                     ),
@@ -244,7 +244,7 @@ const ServicesPage = () => {
                                                     key={idx}
                                                     className="flex items-center bg-white shadow-sm rounded-lg px-3 py-3 border border-gray-100"
                                                 >
-                                                    <CheckCircle className="h-4 w-4 text-teal-600 mr-2 flex-shrink-0" />
+                                                    <CheckCircle className="h-4 w-4 text-teal-600 mt-1 mr-2 flex-shrink-0" />
                                                     <span className="text-sm font-medium text-gray-700">
                                                         {f}
                                                     </span>
@@ -280,7 +280,7 @@ const ServicesPage = () => {
                                             key={i}
                                             className="flex items-start text-gray-700"
                                         >
-                                            <CheckCircle className="h-4 w-4 text-teal-600 mt-1 mr-2" />
+                                            <CheckCircle className="h-4 w-4 text-teal-600 mt-1 mr-2 flex-shrink-0" />
                                             {item}
                                         </li>
                                     ),
@@ -290,10 +290,9 @@ const ServicesPage = () => {
                         <div>
                             <Card className="border-0 shadow-xl rounded-2xl">
                                 <CardHeader>
-                                    <CardTitle>What you get</CardTitle>
+                                    <CardTitle>Highlights</CardTitle>
                                     <CardDescription>
-                                        Structured delivery with measurable
-                                        outcomes
+                                        Key focus areas we deliver
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent>
@@ -310,7 +309,7 @@ const ServicesPage = () => {
                                                 key={idx}
                                                 className="flex items-center bg-gray-50 rounded-lg px-3 py-2"
                                             >
-                                                <CheckCircle className="h-4 w-4 text-teal-600 mr-2" />
+                                                <CheckCircle className="h-4 w-4 text-teal-600 mt-1 mr-2 flex-shrink-0" />
                                                 <span className="text-sm text-gray-700">
                                                     {f}
                                                 </span>
@@ -351,7 +350,7 @@ const ServicesPage = () => {
                                                         key={i}
                                                         className="flex items-start text-gray-700"
                                                     >
-                                                        <CheckCircle className="h-4 w-4 text-teal-600 mt-1 mr-2" />
+                                                        <CheckCircle className="h-4 w-4 text-teal-600 mt-1 mr-2 flex-shrink-0" />
                                                         {item}
                                                     </li>
                                                 ))}
@@ -372,7 +371,7 @@ const ServicesPage = () => {
                                                             key={i}
                                                             className="flex items-center bg-gray-50 rounded-lg px-3 py-2"
                                                         >
-                                                            <CheckCircle className="h-4 w-4 text-teal-600 mr-2" />
+                                                            <CheckCircle className="h-4 w-4 text-teal-600 mt-1 mr-2 flex-shrink-0" />
                                                             <span className="text-sm text-gray-700">
                                                                 {f}
                                                             </span>
